@@ -20,7 +20,7 @@ const config = {
   },
   framework: 'react',
   sass: {
-    data: `$primaryColor: '#07c160';`
+    data: `$primaryColor: '#0080ff';`
   },
   mini: {
     postcss: {

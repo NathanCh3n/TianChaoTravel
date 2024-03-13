@@ -1,6 +1,7 @@
 import { PureComponent } from "react";
 import {
     View,
+    SwiperItem
 } from "@tarojs/components"
 
 import Tab from "../../../components/Tab"
@@ -16,18 +17,26 @@ const FLIGHT_TABS = [
     },
     { 
         label: '往返', 
-        id: 3,
+        id: 2,
     },
 ]
 export default class FlightIndex extends PureComponent {
+    handleTabClick = (id) => {
+        console.log('id', id)
+    }
     render() {
         return (
             <View className="flight-container">
                 <View className="flight-top">
                     <Tab 
-                        className="flight-tab"
                         tabList={FLIGHT_TABS}
-                    />
+                        onTabClick={this.handleTabClick}
+                        className="flight-index-tab"
+                    >
+                        <SwiperItem>111</SwiperItem>
+                        <SwiperItem>222</SwiperItem>
+                        <SwiperItem>333</SwiperItem>
+                    </Tab>
                 </View>
             </View>
         )

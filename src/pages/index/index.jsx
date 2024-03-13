@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
+import FlightIndex from '../flight/index'
+import NoExploit from '../../components/NoExploit'
 
 const DEAFAULT_TAB_LIST = [
   { title: '机票', tab: 'flight', index: 0 },
@@ -35,8 +37,6 @@ export default class Index extends Component {
           <View className='index-tab'>
             {
               DEAFAULT_TAB_LIST.map(item => (
-                  // <View key={item.tab} className='flight'>
-                  // <View key={item.tab} className='index_tab_item hotel'>
                   <View key={item.tab} 
                     className={`index_tab_item ${item.tab} ${tabIndex === item.index ? 'current' : ''}`} 
                     onClick={() => this.switchTab(item.index)}>
@@ -50,8 +50,8 @@ export default class Index extends Component {
         </View>
         {
           DEAFAULT_TAB_LIST[tabIndex]['tab'] === 'flight' ? (
-            <View className="content">flight</View>
-          ) : <View className="content">占位</View>
+            <FlightIndex />
+          ) : <NoExploit />
         }
       </View>
     )

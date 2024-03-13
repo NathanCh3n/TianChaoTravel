@@ -19,6 +19,9 @@ const config = {
     }
   },
   framework: 'react',
+  sass: {
+    data: `$primaryColor: '#07c160';`
+  },
   mini: {
     postcss: {
       pxtransform: {

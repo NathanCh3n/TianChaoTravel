@@ -1,10 +1,9 @@
 const express = require('express');
 const app = express();
+const models = require('./models')
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-})
+models(app)
 const port = 3000
 app.listen(port, () => {
-    console.log(`listening on ${[port]}`)
+    console.log(`server is running on port ${port}`)
 })

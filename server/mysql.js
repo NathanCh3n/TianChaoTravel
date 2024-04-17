@@ -5,7 +5,7 @@ const options = {
     port: '3306',
     user: 'root',
     password: '153193',
-    database: 'faraway',
+    database: 'yuanfang',
 }
 
 // 创建数据库连

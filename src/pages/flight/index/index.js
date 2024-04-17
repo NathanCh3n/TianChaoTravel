@@ -10,7 +10,7 @@ import Tab from "../../../components/Tab"
 import './index.scss'
 const FLIGHT_TABS = [
     { 
-        label: '单程', 
+        label: '单程1', 
         id: 0,
     },
     { 

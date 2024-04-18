@@ -23,11 +23,32 @@ export default class Main extends PureComponent {
     tools.showLoading()
     airportCityListReq()
       .then( res => {
-
+        const { result } = res
+        const obj = this.formatList(result)
+        this.setState({
+          cityListObj: obj,
+          letterList: Object.keys(obj)
+        })
       })
       .catch(err => {
         tools.showToast(ERR_MES)
+      }).finally(() => {
+        tools.hideLoading()
       })
+  }
+  formatList = (list) => {
+    const obj = {}
+    if(list?.length) {
+      list.map((ele) => {
+        const { firstLetter } = ele
+        // 判断obj中是否有以firstLetter为key的属性
+        if(!obj[firstLetter]) {
+          obj[firstLetter] = []
+        }
+        obj[firstLetter].push(ele)
+      })
+    }
+    return obj
   }
   render() {
     const {
@@ -37,7 +58,16 @@ export default class Main extends PureComponent {
     } = this.state;
     return (
       <View className="airport-list-container">
-        城市列表
+        <ScrollView scrollY scrollWithAnimation style={{height: "100vh"}}>
+          <View className="letter-container ">
+            {
+              letterList?.map(item => (
+                  <View key={item} className="letter-item">{item}</View>
+                )
+              )
+            }
+          </View>
+        </ScrollView>
       </View>
     )
   }

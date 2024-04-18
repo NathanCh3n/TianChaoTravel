@@ -5,12 +5,13 @@ import {
     Swiper,
     Image
 } from "@tarojs/components"
+import { adsReq } from "@/common/api";
 
 import Tab from "../../../components/Tab"
 import './index.scss'
 const FLIGHT_TABS = [
     { 
-        label: '单程1', 
+        label: '单程', 
         id: 0,
     },
     { 
@@ -22,16 +23,29 @@ const FLIGHT_TABS = [
         id: 2,
     },
 ]
-const BANNER_IMGS = [
-    "https://nathan-blog-img.oss-cn-nanjing.aliyuncs.com/blog_img/01.png",
-    "https://nathan-blog-img.oss-cn-nanjing.aliyuncs.com/blog_img/12.png",
-    "https://nathan-blog-img.oss-cn-nanjing.aliyuncs.com/blog_img/13.png"
-]
 export default class FlightIndex extends PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            adList: [], // 广告banner
+        }
+    }
+    componentDidMount() {
+        this.getAds()
+    }
     handleTabClick = (id) => {
         console.log('id', id)
     }
+    getAds = async () => {
+        adsReq().then(res => {
+            const { result } = res
+            this.setState({
+                adList: result || [],
+            })
+        })
+    }
     render() {
+        const { adList } = this.state
         return (
             <View className="flight-container">
                 <View className="flight-top">
@@ -47,10 +61,10 @@ export default class FlightIndex extends PureComponent {
                 </View>
                 <Swiper className="advs-banner-bd" autoplay circular interval={3000}>
                     {
-                        BANNER_IMGS.map((item, index) => {
+                        adList.map(item => {
                             return (
-                                <SwiperItem key={index} className="item">
-                                    <Image className="img" src={item}></Image>
+                                <SwiperItem key={item.id} className="item">
+                                    <Image className="img" src={item.imgUrl}></Image>
                                 </SwiperItem>
                             )
                         })

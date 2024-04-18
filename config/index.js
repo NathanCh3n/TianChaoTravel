@@ -1,3 +1,5 @@
+import path from 'path'
+
 const config = {
   projectName: 'tianchaoTravel-taro',
   date: '2024-3-12',
@@ -21,6 +23,10 @@ const config = {
   framework: 'react',
   sass: {
     data: `$primaryColor: '#0080ff';`
+  },
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/common': path.resolve(__dirname, '..', 'src/common'),
   },
   mini: {
     postcss: {

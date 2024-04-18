@@ -1,0 +1,1 @@
+export const ERR_MES = "请求失败，请稍后重试"
